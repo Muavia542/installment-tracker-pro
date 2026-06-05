@@ -12,9 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as ClientRouteImport } from './routes/client'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientIndexRouteImport } from './routes/client.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as ClientReceiptsRouteImport } from './routes/client.receipts'
+import { Route as ClientProfileRouteImport } from './routes/client.profile'
+import { Route as ClientPaymentsRouteImport } from './routes/client.payments'
+import { Route as ClientDealsRouteImport } from './routes/client.deals'
+import { Route as ClientDashboardRouteImport } from './routes/client.dashboard'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminReceiptsRouteImport } from './routes/admin.receipts'
 import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
@@ -37,6 +44,11 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientRoute = ClientRouteImport.update({
+  id: '/client',
+  path: '/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -47,10 +59,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientIndexRoute = ClientIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ClientRoute,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const ClientReceiptsRoute = ClientReceiptsRouteImport.update({
+  id: '/receipts',
+  path: '/receipts',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientProfileRoute = ClientProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientPaymentsRoute = ClientPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientDealsRoute = ClientDealsRouteImport.update({
+  id: '/deals',
+  path: '/deals',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientDashboardRoute = ClientDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => ClientRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
@@ -86,6 +128,7 @@ const AdminClientsRoute = AdminClientsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/client': typeof ClientRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -95,7 +138,13 @@ export interface FileRoutesByFullPath {
   '/admin/payments': typeof AdminPaymentsRoute
   '/admin/receipts': typeof AdminReceiptsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/deals': typeof ClientDealsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/receipts': typeof ClientReceiptsRoute
   '/admin/': typeof AdminIndexRoute
+  '/client/': typeof ClientIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,12 +157,19 @@ export interface FileRoutesByTo {
   '/admin/payments': typeof AdminPaymentsRoute
   '/admin/receipts': typeof AdminReceiptsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/deals': typeof ClientDealsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/receipts': typeof ClientReceiptsRoute
   '/admin': typeof AdminIndexRoute
+  '/client': typeof ClientIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/client': typeof ClientRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -123,13 +179,20 @@ export interface FileRoutesById {
   '/admin/payments': typeof AdminPaymentsRoute
   '/admin/receipts': typeof AdminReceiptsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/deals': typeof ClientDealsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/receipts': typeof ClientReceiptsRoute
   '/admin/': typeof AdminIndexRoute
+  '/client/': typeof ClientIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
+    | '/client'
     | '/forgot-password'
     | '/login'
     | '/signup'
@@ -139,7 +202,13 @@ export interface FileRouteTypes {
     | '/admin/payments'
     | '/admin/receipts'
     | '/admin/settings'
+    | '/client/dashboard'
+    | '/client/deals'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/receipts'
     | '/admin/'
+    | '/client/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -152,11 +221,18 @@ export interface FileRouteTypes {
     | '/admin/payments'
     | '/admin/receipts'
     | '/admin/settings'
+    | '/client/dashboard'
+    | '/client/deals'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/receipts'
     | '/admin'
+    | '/client'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/client'
     | '/forgot-password'
     | '/login'
     | '/signup'
@@ -166,12 +242,19 @@ export interface FileRouteTypes {
     | '/admin/payments'
     | '/admin/receipts'
     | '/admin/settings'
+    | '/client/dashboard'
+    | '/client/deals'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/receipts'
     | '/admin/'
+    | '/client/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  ClientRoute: typeof ClientRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
@@ -200,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client': {
+      id: '/client'
+      path: '/client'
+      fullPath: '/client'
+      preLoaderRoute: typeof ClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -214,12 +304,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client/': {
+      id: '/client/'
+      path: '/'
+      fullPath: '/client/'
+      preLoaderRoute: typeof ClientIndexRouteImport
+      parentRoute: typeof ClientRoute
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/client/receipts': {
+      id: '/client/receipts'
+      path: '/receipts'
+      fullPath: '/client/receipts'
+      preLoaderRoute: typeof ClientReceiptsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/profile': {
+      id: '/client/profile'
+      path: '/profile'
+      fullPath: '/client/profile'
+      preLoaderRoute: typeof ClientProfileRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/payments': {
+      id: '/client/payments'
+      path: '/payments'
+      fullPath: '/client/payments'
+      preLoaderRoute: typeof ClientPaymentsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/deals': {
+      id: '/client/deals'
+      path: '/deals'
+      fullPath: '/client/deals'
+      preLoaderRoute: typeof ClientDealsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/dashboard': {
+      id: '/client/dashboard'
+      path: '/dashboard'
+      fullPath: '/client/dashboard'
+      preLoaderRoute: typeof ClientDashboardRouteImport
+      parentRoute: typeof ClientRoute
     }
     '/admin/settings': {
       id: '/admin/settings'
@@ -288,9 +420,31 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface ClientRouteChildren {
+  ClientDashboardRoute: typeof ClientDashboardRoute
+  ClientDealsRoute: typeof ClientDealsRoute
+  ClientPaymentsRoute: typeof ClientPaymentsRoute
+  ClientProfileRoute: typeof ClientProfileRoute
+  ClientReceiptsRoute: typeof ClientReceiptsRoute
+  ClientIndexRoute: typeof ClientIndexRoute
+}
+
+const ClientRouteChildren: ClientRouteChildren = {
+  ClientDashboardRoute: ClientDashboardRoute,
+  ClientDealsRoute: ClientDealsRoute,
+  ClientPaymentsRoute: ClientPaymentsRoute,
+  ClientProfileRoute: ClientProfileRoute,
+  ClientReceiptsRoute: ClientReceiptsRoute,
+  ClientIndexRoute: ClientIndexRoute,
+}
+
+const ClientRouteWithChildren =
+  ClientRoute._addFileChildren(ClientRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  ClientRoute: ClientRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
