@@ -9,38 +9,294 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as ClientRouteImport } from './routes/client'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientIndexRouteImport } from './routes/client.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as ClientReceiptsRouteImport } from './routes/client.receipts'
+import { Route as ClientProfileRouteImport } from './routes/client.profile'
+import { Route as ClientPaymentsRouteImport } from './routes/client.payments'
+import { Route as ClientDealsRouteImport } from './routes/client.deals'
+import { Route as ClientDashboardRouteImport } from './routes/client.dashboard'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminReceiptsRouteImport } from './routes/admin.receipts'
+import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
+import { Route as AdminDealsRouteImport } from './routes/admin.deals'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminClientsRouteImport } from './routes/admin.clients'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientRoute = ClientRouteImport.update({
+  id: '/client',
+  path: '/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientIndexRoute = ClientIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ClientRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ClientReceiptsRoute = ClientReceiptsRouteImport.update({
+  id: '/receipts',
+  path: '/receipts',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientProfileRoute = ClientProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientPaymentsRoute = ClientPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientDealsRoute = ClientDealsRouteImport.update({
+  id: '/deals',
+  path: '/deals',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientDashboardRoute = ClientDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => ClientRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReceiptsRoute = AdminReceiptsRouteImport.update({
+  id: '/receipts',
+  path: '/receipts',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDealsRoute = AdminDealsRouteImport.update({
+  id: '/deals',
+  path: '/deals',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminClientsRoute = AdminClientsRouteImport.update({
+  id: '/clients',
+  path: '/clients',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/client': typeof ClientRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/admin/clients': typeof AdminClientsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/deals': typeof AdminDealsRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/receipts': typeof AdminReceiptsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/deals': typeof ClientDealsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/receipts': typeof ClientReceiptsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/client/': typeof ClientIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/admin/clients': typeof AdminClientsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/deals': typeof AdminDealsRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/receipts': typeof AdminReceiptsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/deals': typeof ClientDealsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/receipts': typeof ClientReceiptsRoute
+  '/admin': typeof AdminIndexRoute
+  '/client': typeof ClientIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/client': typeof ClientRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/admin/clients': typeof AdminClientsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/deals': typeof AdminDealsRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/receipts': typeof AdminReceiptsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/deals': typeof ClientDealsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/receipts': typeof ClientReceiptsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/client/': typeof ClientIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/client'
+    | '/forgot-password'
+    | '/login'
+    | '/signup'
+    | '/admin/clients'
+    | '/admin/dashboard'
+    | '/admin/deals'
+    | '/admin/payments'
+    | '/admin/receipts'
+    | '/admin/settings'
+    | '/client/dashboard'
+    | '/client/deals'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/receipts'
+    | '/admin/'
+    | '/client/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/signup'
+    | '/admin/clients'
+    | '/admin/dashboard'
+    | '/admin/deals'
+    | '/admin/payments'
+    | '/admin/receipts'
+    | '/admin/settings'
+    | '/client/dashboard'
+    | '/client/deals'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/receipts'
+    | '/admin'
+    | '/client'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/client'
+    | '/forgot-password'
+    | '/login'
+    | '/signup'
+    | '/admin/clients'
+    | '/admin/dashboard'
+    | '/admin/deals'
+    | '/admin/payments'
+    | '/admin/receipts'
+    | '/admin/settings'
+    | '/client/dashboard'
+    | '/client/deals'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/receipts'
+    | '/admin/'
+    | '/client/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ClientRoute: typeof ClientRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client': {
+      id: '/client'
+      path: '/client'
+      fullPath: '/client'
+      preLoaderRoute: typeof ClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +304,151 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client/': {
+      id: '/client/'
+      path: '/'
+      fullPath: '/client/'
+      preLoaderRoute: typeof ClientIndexRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/client/receipts': {
+      id: '/client/receipts'
+      path: '/receipts'
+      fullPath: '/client/receipts'
+      preLoaderRoute: typeof ClientReceiptsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/profile': {
+      id: '/client/profile'
+      path: '/profile'
+      fullPath: '/client/profile'
+      preLoaderRoute: typeof ClientProfileRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/payments': {
+      id: '/client/payments'
+      path: '/payments'
+      fullPath: '/client/payments'
+      preLoaderRoute: typeof ClientPaymentsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/deals': {
+      id: '/client/deals'
+      path: '/deals'
+      fullPath: '/client/deals'
+      preLoaderRoute: typeof ClientDealsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/dashboard': {
+      id: '/client/dashboard'
+      path: '/dashboard'
+      fullPath: '/client/dashboard'
+      preLoaderRoute: typeof ClientDashboardRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/receipts': {
+      id: '/admin/receipts'
+      path: '/receipts'
+      fullPath: '/admin/receipts'
+      preLoaderRoute: typeof AdminReceiptsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/payments': {
+      id: '/admin/payments'
+      path: '/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AdminPaymentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/deals': {
+      id: '/admin/deals'
+      path: '/deals'
+      fullPath: '/admin/deals'
+      preLoaderRoute: typeof AdminDealsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/clients': {
+      id: '/admin/clients'
+      path: '/clients'
+      fullPath: '/admin/clients'
+      preLoaderRoute: typeof AdminClientsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminClientsRoute: typeof AdminClientsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDealsRoute: typeof AdminDealsRoute
+  AdminPaymentsRoute: typeof AdminPaymentsRoute
+  AdminReceiptsRoute: typeof AdminReceiptsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminClientsRoute: AdminClientsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminDealsRoute: AdminDealsRoute,
+  AdminPaymentsRoute: AdminPaymentsRoute,
+  AdminReceiptsRoute: AdminReceiptsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface ClientRouteChildren {
+  ClientDashboardRoute: typeof ClientDashboardRoute
+  ClientDealsRoute: typeof ClientDealsRoute
+  ClientPaymentsRoute: typeof ClientPaymentsRoute
+  ClientProfileRoute: typeof ClientProfileRoute
+  ClientReceiptsRoute: typeof ClientReceiptsRoute
+  ClientIndexRoute: typeof ClientIndexRoute
+}
+
+const ClientRouteChildren: ClientRouteChildren = {
+  ClientDashboardRoute: ClientDashboardRoute,
+  ClientDealsRoute: ClientDealsRoute,
+  ClientPaymentsRoute: ClientPaymentsRoute,
+  ClientProfileRoute: ClientProfileRoute,
+  ClientReceiptsRoute: ClientReceiptsRoute,
+  ClientIndexRoute: ClientIndexRoute,
+}
+
+const ClientRouteWithChildren =
+  ClientRoute._addFileChildren(ClientRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ClientRoute: ClientRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
