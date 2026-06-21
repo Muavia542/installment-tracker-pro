@@ -34,14 +34,17 @@ const clientNav: NavItem[] = [
   { to: "/client/profile", labelKey: "profile", icon: UserIcon },
 ];
 
+import { useAuth } from "@/lib/auth";
+
 export function AppShell({ role, children }: { role: "admin" | "client"; children?: ReactNode }) {
   const { t, dir } = useApp();
   const location = useLocation();
   const nav = useNavigate();
+  const { user, signOut } = useAuth();
   const [open, setOpen] = useState(false);
   const items = role === "admin" ? adminNav : clientNav;
-  const displayName = role === "admin" ? "Imran Sheikh" : "Ahmed Khan";
-  const initial = displayName.charAt(0);
+  const displayName = (user?.user_metadata?.full_name as string) || user?.email?.split("@")[0] || (role === "admin" ? "Admin" : "Client");
+  const initial = displayName.charAt(0).toUpperCase();
 
   const SideContent = (
     <div className="flex flex-col h-full">
@@ -134,7 +137,7 @@ export function AppShell({ role, children }: { role: "admin" | "client"; childre
                 <DropdownMenuItem onClick={() => nav({ to: role === "admin" ? "/admin/settings" : "/client/profile" })}>
                   <UserIcon className="w-4 h-4 me-2" /> {t("profile")}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => nav({ to: "/" })}>
+                <DropdownMenuItem onClick={async () => { await signOut(); nav({ to: "/login" }); }}>
                   <LogOut className="w-4 h-4 me-2" /> {t("signOut")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
