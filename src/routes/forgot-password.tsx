@@ -16,10 +16,19 @@ function Forgot() {
   const { t } = useApp();
   return (
     <AuthLayout title={t("resetPassword")} subtitle="We'll send a reset link to your email.">
-      <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); toast.success("Reset link sent! Check your email."); }}>
+      <form className="space-y-4" onSubmit={async (e) => {
+        e.preventDefault();
+        const email = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
+        const { supabase } = await import("@/integrations/supabase/client");
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/login`,
+        });
+        if (error) toast.error(error.message);
+        else toast.success("Reset link sent! Check your email.");
+      }}>
         <div className="space-y-2">
           <Label htmlFor="email">{t("email")}</Label>
-          <Input id="email" type="email" placeholder="you@example.com" />
+          <Input id="email" name="email" type="email" placeholder="you@example.com" required />
         </div>
         <Button type="submit" className="w-full h-11">{t("sendResetLink")}</Button>
       </form>
